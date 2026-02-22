@@ -1,0 +1,55 @@
+=== SNN Analysis Report ===
+
+Network Parameters:
+  Input neurons: 3
+  Output neurons: 2
+  Simulation duration: 100.0 ms
+  Threshold: 0.2
+
+Results:
+  Input spikes: 2789
+  Output spikes: 1876
+
+Input spike times (first 20):
+  Time: 0.340 ms, Neuron: 0
+  Time: 0.363 ms, Neuron: 0
+  Time: 0.385 ms, Neuron: 0
+  Time: 0.408 ms, Neuron: 0
+  Time: 0.431 ms, Neuron: 0
+  Time: 0.454 ms, Neuron: 1
+  Time: 0.499 ms, Neuron: 0
+  Time: 0.907 ms, Neuron: 0
+  Time: 0.930 ms, Neuron: 0
+  Time: 0.952 ms, Neuron: 0
+  Time: 0.975 ms, Neuron: 0
+  Time: 1.020 ms, Neuron: 0
+  Time: 1.043 ms, Neuron: 0
+  Time: 1.111 ms, Neuron: 0
+  Time: 1.202 ms, Neuron: 0
+  Time: 1.224 ms, Neuron: 1
+  Time: 1.247 ms, Neuron: 1
+  Time: 1.270 ms, Neuron: 1
+  Time: 1.293 ms, Neuron: 0
+  Time: 1.315 ms, Neuron: 0
+
+Output spike times (first 20):
+  Time: 0.385 ms, Neuron: 0
+  Time: 0.385 ms, Neuron: 1
+  Time: 0.454 ms, Neuron: 0
+  Time: 0.454 ms, Neuron: 1
+  Time: 0.930 ms, Neuron: 0
+  Time: 0.930 ms, Neuron: 1
+  Time: 0.998 ms, Neuron: 0
+  Time: 0.998 ms, Neuron: 1
+  Time: 1.066 ms, Neuron: 0
+  Time: 1.066 ms, Neuron: 1
+  Time: 1.224 ms, Neuron: 0
+  Time: 1.224 ms, Neuron: 1
+  Time: 1.293 ms, Neuron: 0
+  Time: 1.293 ms, Neuron: 1
+  Time: 1.361 ms, Neuron: 0
+  Time: 1.361 ms, Neuron: 1
+  Time: 1.519 ms, Neuron: 0
+  Time: 1.519 ms, Neuron: 1
+  Time: 1.723 ms, Neuron: 0
+  Time: 1.723 ms, Neuron: 1
