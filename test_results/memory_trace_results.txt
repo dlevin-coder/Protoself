@@ -1,0 +1,28 @@
+Test 3 Results: Memory Trace (A → B → A)
+==================================================
+
+Stage: A1
+  Input spikes: 70
+  Generative network spikes: 160
+  Output layer spikes: 280
+  Average weight: 0.429
+
+Stage: B
+  Input spikes: 274
+  Generative network spikes: 4283
+  Output layer spikes: 5931
+  Average weight: 1.633
+
+Stage: A2
+  Input spikes: 70
+  Generative network spikes: 1730
+  Output layer spikes: 1500
+  Average weight: 2.000
+
+MEMORY TRACE ANALYSIS:
+--------------------
+A1 → output: 280 spikes
+B → output: 5931 spikes
+A2 → output: 1500 spikes
+
+✓ CONFIRMED: Self-like behavior recovers faster after B

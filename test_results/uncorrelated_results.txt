@@ -1,0 +1,6 @@
+Test 2 Results: Uncorrelated signal
+========================================
+Input spikes: 269
+Generative network spikes: 1614
+Output layer spikes: 3200
+Average weight: 0.538

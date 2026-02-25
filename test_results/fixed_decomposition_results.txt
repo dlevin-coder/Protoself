@@ -1,0 +1,30 @@
+TEST 4 RESULTS: FIXED DECOMPOSITION
+==================================================
+
+DECOMPOSITION MODEL: Σ(t) = Σ_fast(t) + Σ_slow
+- Σ_fast - disappears under anesthesia (current activity)
+- Σ_slow - preserved as 'form' for recovery
+
+INPUT SIGNAL:
+- 20 spikes every 50 ms
+- Strong rhythmic pattern
+
+MODEL RESULTS:
+-------------------------
+Model 1 - Full system:      520 spikes
+Model 2 - Only Σ_slow:          0 spikes
+Model 3 - Partial recovery:    270 spikes
+Model 4 - Almost full:        560 spikes
+
+DECOMPOSITION ANALYSIS:
+--------------------
+✓ Hypothesis 1 CONFIRMED: Anesthesia reduces activity by 100.0%
+✓ Hypothesis 2 CONFIRMED: Recovery increases activity
+⚠ Hypothesis 3: Recovery exceeds original level
+○ Hypothesis 4: Activity sequence is not logical
+
+QUANTITATIVE ANALYSIS:
+--------------------
+Full system → Anesthesia: 520 → 0
+Anesthesia → Recovery: 0 → 270
+Recovery → Almost full: 270 → 560

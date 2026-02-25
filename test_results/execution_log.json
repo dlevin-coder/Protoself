@@ -1,0 +1,33 @@
+{
+  "execution_time": "2026-02-25T20:19:10.147225",
+  "total_tests": 5,
+  "successful_tests": 5,
+  "success_rate": 100.0,
+  "tests": [
+    {
+      "name": "TEST 1: Correlated Signal Processing",
+      "success": true,
+      "output_preview": "Test 1: Correlated signal (A(t))\nInput spikes: 70\nGenerative network spikes: 90\nOutput layer spikes: 150\nAverage weight: 0.390\nResults saved to test_results/correlated_results.txt\n"
+    },
+    {
+      "name": "TEST 2: Uncorrelated Signal Processing",
+      "success": true,
+      "output_preview": "Test 2: Uncorrelated signal (B(t))\nInput spikes: 269\nGenerative network spikes: 1614\nOutput layer spikes: 3200\nAverage weight: 0.538\nResults saved to test_results/uncorrelated_results.txt\n"
+    },
+    {
+      "name": "TEST 3: Memory Trace Analysis (A\u2192B\u2192A)",
+      "success": true,
+      "output_preview": "Test 3: Memory Trace (A \u2192 B \u2192 A)\nStage 1: Correlated signal (A)\n  Running first stage (A)...\n  Stage 1 completed: 280 output layer spikes\nStage 2: Uncorrelated signal (B)\n  Running second stage (B)...\n  Stage 2 completed: 5931 output layer spikes\nStage 3: Correlated signal again (A)\n  Running third stage (A again)...\n  Stage 3 completed: 1500 output layer spikes\nResults saved to test_results/memory_trace_results.txt\n\nBRIEF SUMMARY:\n====================\nA1: 280 spikes\nB:  5931 spikes\nA2: 1500 spi..."
+    },
+    {
+      "name": "TEST 4: Adaptation Decomposition (\u03a3_fast + \u03a3_slow)",
+      "success": true,
+      "output_preview": "Test 4: Fixed Decomposition (\u03a3 = \u03a3_fast + \u03a3_slow)\n=======================================================\nCreating strong rhythmic input...\nGenerated 20 input spikes every 50 ms\nModel 1: Full system (\u03a3_fast + \u03a3_slow active)\n  Full system: 520 spikes\nModel 2: Slow components only (anesthesia)\n  Slow components only: 0 spikes\nModel 3: Partial recovery\n  Partial recovery: 270 spikes\nModel 4: Almost full recovery\n  Almost full recovery: 560 spikes\n\nResults saved to test_results/fixed_decomposition_r..."
+    },
+    {
+      "name": "TEST 5: Functional Identity of Adaptive Filter",
+      "success": true,
+      "output_preview": "Test 5: Functional Identity of Adaptive Filter\n==================================================\nGenerating test patterns...\nPattern: 40 spikes\nNoise: 13 spikes\nPattern sample times (first 5): [0, 25, 50, 75, 100]\nNoise sample times (first 5): [86, 189, 244, 311, 402]\n\nPHASE 1: Training filter on rhythmic pattern\nTraining completed: 480 output spikes\nFinal weights sample: [2.2, 2.2, 2.2, 2.2, 2.2]\n\nPHASE 2: Testing trained filter response to pattern\nPattern response: 560 spikes\nPHASE 3: Testing..."
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+Test 1 Results: Correlated signal
+========================================
+Input spikes: 70
+Generative network spikes: 90
+Output layer spikes: 150
+Average weight: 0.390
