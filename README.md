@@ -1,3 +1,6 @@
+https://zenodo.org/records/18732363
+https://zenodo.org/records/18776167
+
 1 Introduction
 
 Artificial systems capable of flexible, context-sensitive behavior typically rely on internal states that
