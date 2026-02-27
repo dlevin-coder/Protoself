@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO: Основные мета-теги -->
+    <title>My Zenodo records | Andrejs Bistricenko</title>
+    <meta name="description" content="A page with my scientific publications available on Zenodo. Full texts, abstracts, and references are available.">
+    <meta name="keywords" content="Zenodo, records, Spiking neural networks">
+    <meta name="author" content="Andrejs Bistricenko">
+    
+    <!-- SEO: Открытые графики для соцсетей (как будут выглядеть ссылки в Twitter/LinkedIn) -->
+    <meta property="og:title" content="My Zenodo records">
+    <meta property="og:description" content="A page with my scientific publications available on Zenodo">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dlevin-coder.github.io/protoself/">
+    
+    <!-- Подключаем шрифт Google Fonts для красивого текста -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Стили страницы - делаем красиво и современно */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2c3e50;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        
+        /* Главная карточка с информацией об авторе */
+        .header-card {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center;
+        }
+        
+        .header-card h1 {
+            font-size: 2.5em;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header-card .subtitle {
+            font-size: 1.2em;
+            color: #666;
+            margin-bottom: 20px;
+        }
+        
+        .header-card .bio {
+            max-width: 700px;
+            margin: 20px auto;
+            color: #555;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9em;
+            font-weight: 500;
+            margin: 10px 0;
+        }
+        
+        /* Сетка для карточек статей */
+        .papers-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        /* Карточка отдельной статьи */
+        .paper-card {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .paper-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+        }
+        
+        .paper-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 25px;
+            position: relative;
+        }
+        
+        .paper-type {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 12px;
+            border-radius: 50px;
+            font-size: 0.8em;
+            font-weight: 500;
+        }
+        
+        .paper-title {
+            font-size: 1.4em;
+            font-weight: 600;
+            margin: 10px 0;
+            line-height: 1.4;
+            padding-right: 30px;
+        }
+        
+        .paper-date {
+            font-size: 0.9em;
+            opacity: 0.9;
+            margin-top: 10px;
+        }
+        
+        .paper-content {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .paper-abstract {
+            color: #4a5568;
+            margin-bottom: 20px;
+            font-size: 0.95em;
+            line-height: 1.7;
+            flex-grow: 1;
+        }
+        
+        .paper-meta {
+            background: #f7fafc;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-size: 0.9em;
+            border: 1px solid #e2e8f0;
+        }
+        
+        .meta-item {
+            margin-bottom: 8px;
+        }
+        
+        .meta-item strong {
+            color: #2d3748;
+            width: 100px;
+            display: inline-block;
+        }
+        
+        .doi-link {
+            color: #667eea;
+            text-decoration: none;
+            word-break: break-all;
+        }
+        
+        .doi-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Кнопка для перехода к статье */
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 500;
+            text-align: center;
+            transition: transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+        
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+        
+        /* Секция с контактами и ссылками */
+        .contact-section {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            margin-top: 30px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        .contact-section h3 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .social-link {
+            color: #667eea;
+            text-decoration: none;
+            padding: 8px 16px;
+            border: 2px solid #667eea;
+            border-radius: 50px;
+            transition: all 0.3s;
+        }
+        
+        .social-link:hover {
+            background: #667eea;
+            color: white;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            color: rgba(255,255,255,0.8);
+            font-size: 0.9em;
+        }
+        
+        /* Адаптация для мобильных устройств */
+        @media (max-width: 768px) {
+            .papers-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-card h1 {
+                font-size: 2em;
+            }
+            
+            .paper-title {
+                font-size: 1.2em;
+            }
+            
+            .meta-item strong {
+                width: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Главная карточка с вашей информацией -->
+        <div class="header-card">
+            <h1>Andrejs Bistricenko</h1>
+            <div class="subtitle">Researcher</div>
+            <div class="badge">Scientific publications</div>
+            <div class="bio">
+                <p>"Researcher, Riga, Latvia"</p>
+            </div>
+            <!-- Ключевые слова для SEO, видимые пользователям -->
+            <div style="color: #999; font-size: 0.8em; margin-top: 20px;">
+                #zenodo #records #Spiking neural networks 
+            </div>
+        </div>
+        
+        <!-- Сетка из двух карточек для статей -->
+        <div class="papers-grid">
+            
+            <!-- КАРТОЧКА СТАТЬИ 1 -->
+            <div class="paper-card">
+                <div class="paper-header">
+                    <span class="paper-type">Preprint</span>
+                    <h2 class="paper-title">Unified Proto Self-Object: A Spiking Neural Architecture for Minimal Self-Representation</h2>
+                    <div class="paper-date">Published: 22.02.2026</div>
+                </div>
+                <div class="paper-content">
+                    <div class="paper-abstract">
+                        <strong>Abstract:</strong>
+                        <p style="margin-top: 10px;">We present a generative, recursively structured spiking neural architecture that implements
+a self-representation as an internal object rather than as a persistent subject or control center.
+The model distinguishes between observer mechanisms, responsible for integrating sensory and
+internally generated signals, and a self-object that is dynamically reconstructed from the sys-
+tem’s current configuration. Reflexive dynamics arise when this self-object itself becomes an
+object of observation, yielding a recursive organization without introducing an explicit subject-
+level entity.
+We implement this framework in a spiking neural network and evaluate it using a set of
+behavioral tests designed to probe three core properties: contextual modulation of identical
+inputs, persistence of internal state in the absence of external stimulation, and controllable
+valence-like dynamics. The results demonstrate that a self-object construed as a dynamically
+maintained internal representation is sufficient to modulate interpretation, retain state over
+time, and support affect-like global dynamics.
+While the model does not claim to instantiate consciousness or subjective experience, it
+provides a constructive architectural framework for investigating self-representation and reflexive
+dynamics in artificial systems, with implications for wakefulness, dreaming, meditation, and
+dissociative phenomena.</p>
+                    </div>
+                    
+                    <div class="paper-meta">
+                        <div class="meta-item"><strong>DOI:</strong> <a href="https://zenodo.org/records/18732363" class="doi-link" target="_blank">10.5281/zenodo.18732363</a></div>
+                        <div class="meta-item"><strong>Authors:</strong>Andrejs Bistricenko</div>
+                        <div class="meta-item"><strong>Keywords:</strong> neural networks, spiking neural networks, consciousness theory</div>
+                    </div>
+                    
+                    <!-- ДВЕ КНОПКИ: одна ведет на статью, другая - на код/данные (опционально) -->
+                    <div style="display: flex; gap: 10px; margin-top: auto;">
+                        <a href="https://zenodo.org/records/18732363" class="btn btn-small" target="_blank" style="flex: 2;">Read record on Zenodo</a>
+                        <a href="https://github.com/dlevin-coder/Protoself" class="btn btn-small" target="_blank" style="flex: 1; background: #4a5568;">Code</a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- КАРТОЧКА СТАТЬИ 2 -->
+            <div class="paper-card">
+                <div class="paper-header">
+                    <span class="paper-type">Preprint</span>
+                    <h2 class="paper-title">The Self as an Emergent Adaptive Filter: A Spiking Neural Network Study</h2>
+                    <div class="paper-date">Published: 25.02.2026</div>
+                </div>
+                <div class="paper-content">
+                    <div class="paper-abstract">
+                        <strong>Abstract:</strong>
+                        <p style="margin-top: 10px;">The nature of the self is traditionally modeled as a persistent internal state, memory struc-
+ture, or representational object. However, empirical phenomena such as the loss and recovery
+of subjectivity during deep sleep and general anesthesia challenge models that require contin-
+uous state preservation. In this work, we propose and computationally validate an alternative
+hypothesis: the self is not a stored entity but an emergent adaptive filtering process that arises
+during ongoing sensory interaction.
+Using spiking neural network (SNN) models implemented in Brian2, we demonstrate that
+self-like functional properties emerge selectively in response to temporally correlated inputs
+and collapse under decorrelated stimulation. Through a series of controlled computational
+experiments, we show that (i) organized network dynamics depend on temporal correlation
+rather than signal energy, (ii) apparent memory effects arise from altered adaptive dynamics
+rather than stored representations, and (iii) functional identity can be restored after complete
+loss of activity, despite the absence of preserved instantaneous state.
+We further introduce a formal decomposition of system state into fast and slow components,
+providing a principled account of how self-like behavior can disappear and re-emerge while
+maintaining functional continuity. The results support a view of the self as a transient, input-
+dependent adaptive filter rather than a persistent internal object.</p>
+                    </div>
+                    
+                    <div class="paper-meta">
+                        <div class="meta-item"><strong>DOI:</strong> <a href="https://zenodo.org/records/18776167" class="doi-link" target="_blank">10.5281/zenodo.18776167</a></div>
+                        <div class="meta-item"><strong>Authors:</strong> Andrejs Bistricenko</div>
+                        <div class="meta-item"><strong>Keywords:</strong> neural networks, spiking neural networks, consciousness theory</div>
+                    </div>
+                    
+                    <div style="display: flex; gap: 10px; margin-top: auto;">
+                        <a href="https://zenodo.org/records/18776167" class="btn btn-small" target="_blank" style="flex: 2;">Read record on Zenodo</a>
+                        <a href="https://github.com/dlevin-coder/Protoself" class="btn btn-small" target="_blank" style="flex: 1; background: #4a5568;">Code</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Дополнительная информация: контакты и ссылки -->
+        <div class="contact-section">
+            <h3 style="text-align: center;">Contact me</h3>
+            <div style="text-align: center; margin-bottom: 25px;">
+                <p>If you have any questions about my research or would like to discuss collaboration, please write to me</p>
+            </div>
+            
+            <div class="social-links">
+                <a href="" class="social-link" target="_blank">LinkedIn</a>
+                <a href="" class="social-link" target="_blank">ResearchGate</a>
+                <a href="" class="social-link" target="_blank">Twitter</a>
+                <a href="https://github.com/dlevin-coder/Protoself" class="social-link" target="_blank">GitHub</a>
+            </div>
+            
+            <div style="text-align: center; margin-top: 25px; padding-top: 20px; border-top: 1px solid #e2e8f0;">
+                <p style="margin-bottom: 5px;">📧 Email: <a href="dmitrijs.levins@gmail.com" style="color: #667eea; text-decoration: none;">dmitrijs.levins@gmail.com</a></p>
+                <p style="color: #718096;">🏢 Riga, Latvia</p>
+            </div>
+        </div>
+        
+        <!-- Счетчик для Google Search Console (опционально) -->
+        <!-- Вставьте сюда код verification, который даст вам Google Search Console -->
+        
+        <div class="footer">
+            <p>© 2025 Andrejs Bistricenko. All rights reserved. | Powered by GitHub Pages</p>
+            <p style="margin-top: 10px; font-size: 0.8em;">
+                <a href="https://github.com/dlevin-coder/protoself" style="color: rgba(255,255,255,0.8);">The source code for this page is on GitHub.</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
